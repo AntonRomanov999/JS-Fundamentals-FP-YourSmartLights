@@ -1,0 +1,36 @@
+.device-card {
+    color: var(--txt-active);
+}
+
+.device-card {
+    display: grid;
+    gap: 20px;
+}
+
+.device-card div.device-card__main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.device-card__params {
+    display: grid;
+    gap: 10px;
+}
+
+.device-on {
+    color: var(--name-hl);
+    font-weight: bolder;
+}
+
+.slider-dim {
+    color: black;
+}
+
+.main__section {
+    display: none;
+}
+
+.main__section.active {
+  display: block;
+}
+

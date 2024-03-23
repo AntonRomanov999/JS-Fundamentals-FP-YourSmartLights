@@ -1,5 +1,76 @@
 @import "common.css";
+@import "buttons.css";
+@import "backgrounds.css";
+@import "cards.css";
 
-body {
-  background-color: #0A2344;
+.frame-main {
+  margin: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.frame {
+  padding: 10px;
+  border-radius: 25px;
+  background-color: var(--back-main);
+}
+
+.frame-inner {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: var(--back-main);
+}
+
+.info__time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--txt-nonactive);
+  font-size: 18px;
+  padding: 15px;
+}
+
+.info__details hr {
+  width: 100%;
+  border: 1px solid var(--txt-nonactive);
+  margin: 15px;
+}
+
+.info__time-clock {
+  color: var(--txt-active);
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.info__time-date {
+  color: var(--txt-active);
+  font-size: 22px;
+  font-weight: medium;
+}
+
+.info__state p {
+  color: var(--txt-nonactive);
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgb(42, 42, 42);
+}
+
+.main__greetings {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__greetings {
+  color: var(--txt-active);
+  font-size: 36px;
+  font-weight: medium;
 }

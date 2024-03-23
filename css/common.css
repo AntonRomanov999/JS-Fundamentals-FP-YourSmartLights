@@ -9,7 +9,13 @@
 :root {
  scroll-behavior: smooth;  
  font-family: 'Open Sans', sans-serif;
- --txt-color: #1b1b1b;
+--txt-active: #FFFFFF;
+--txt-nonactive: #d7d7d7;
+--btn-add: #5AB500;
+--btn-del: #B50000;
+--back-main: rgba(255, 255, 255, 35%);
+--back-transp: rgba(255, 255, 255, 0%);
+--name-hl: #fff39b;
 }
 
 img {

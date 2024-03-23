@@ -8,10 +8,30 @@
     <link rel="stylesheet" href="css/index.css" />
   </head>
 
-  <body>
+  <body class="day-back">
+    <div class="frame-main">
+      <section class="main frame">
+        <p class="main__greetings"></p>
+      </section>
+      <section class="info frame">
+        <div class="info__time frame-inner">
+          <div class="info__time-clock"></div>
+          <div class="info__time-date"></div>
+          <button class="btn-arrow">
+            <svg>
+              <use href="/img/arrow.svg#arrow"></use>
+            </svg>
+          </button>
+        </div>
+        <div class="info__details">
+          <p class="info__weather"></p>
+          <hr />
+          <div class="info__state">
+          </div>
+        </div>
+      </section>
+    </div>
 
-
-
-    <script src="../js/index.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>

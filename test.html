@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YourSmartHome</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body class="day-back">
+    <section class="main frame">
+      <p class="main__greetings"></p>
+
+      <div class="btns-container" id="sections">
+        <button class="btn-sect">Devices</button>
+        <button class="btn-sect">Groups</button>
+        <button class="btn-sect">Options</button>
+      </div>
+
+      <div class="btns-container">
+        <button class="btn-add" id="add">Add new device</button>
+        <button class="btn-del" id="del">Remove device</button>
+      </div>
+
+      <div class="main__section" id="Devices">
+        <div class="device-card frame-inner">
+          <div class="device-card__main">
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <h2 class="device-card__name device-on">Lamp 1 (kitchen)</h2>
+          </div>
+          <div class="device-card__params">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="1"
+              class="slider-dim"
+              id="light-dim"
+            />
+            <p>Brightness</p>
+          </div>
+        </div>
+      </div>
+      <div class="main__section" id="Groups"></div>
+      <div class="main__section" id="Options"></div>
+    </section>
+    <!-- <script src="../js/main.js"></script> -->
+    <script src="../js/buttons.js"></script>
+  </body>
+</html>
