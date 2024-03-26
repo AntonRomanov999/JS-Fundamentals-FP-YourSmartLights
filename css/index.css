@@ -29,6 +29,11 @@
 }
 
 .info__details {
+  height: 0;
+  overflow: hidden;
+}
+
+.info__details.active {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +41,7 @@
   color: var(--txt-nonactive);
   font-size: 18px;
   padding: 15px;
+  height: fit-content;
 }
 
 .info__details hr {
@@ -73,4 +79,16 @@
   color: var(--txt-active);
   font-size: 36px;
   font-weight: medium;
+}
+
+.main__section {
+  display: none;
+}
+
+.main__section.active {
+  display: grid;
+}
+
+.main__devlist {
+  gap: 10px;
 }

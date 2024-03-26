@@ -15,6 +15,11 @@
   stroke: var(--txt-active);
 }
 
+.btn-arrow.active {
+  transform: scaleY(-1);
+}
+
+
 /* switch */
 
 .switch {

@@ -7,6 +7,11 @@
     gap: 20px;
 }
 
+.device-card.current {
+    opacity: 1;
+    box-shadow: 5px 5px 5px gray;
+}
+
 .device-card div.device-card__main {
     display: flex;
     justify-content: space-between;
@@ -17,7 +22,12 @@
     gap: 10px;
 }
 
-.device-on {
+.device-card__name {
+    color: gray;
+    font-weight: lighter;
+}
+
+.device-card__name.on {
     color: var(--name-hl);
     font-weight: bolder;
 }
@@ -26,11 +36,4 @@
     color: black;
 }
 
-.main__section {
-    display: none;
-}
-
-.main__section.active {
-  display: block;
-}
 

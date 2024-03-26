@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YourSmartHome</title>
     <link rel="stylesheet" href="css/index.css" />
+    <script type="module" src="../js/main.js"></script>
   </head>
 
   <body class="day-back">
     <div class="frame-main">
-      <section class="main frame">
-        <p class="main__greetings"></p>
-      </section>
+
       <section class="info frame">
         <div class="info__time frame-inner">
           <div class="info__time-clock"></div>
@@ -26,12 +25,32 @@
         <div class="info__details">
           <p class="info__weather"></p>
           <hr />
-          <div class="info__state">
-          </div>
+          <div class="info__state"></div>
         </div>
       </section>
-    </div>
 
-    <script src="../js/main.js"></script>
+      <section class="main frame">
+        <p class="main__greetings"></p>
+
+        <div class="btns-container" id="sections">
+          <button class="btn-sect">Devices</button>
+          <button class="btn-sect">Groups</button>
+          <button class="btn-sect">Options</button>
+        </div>
+
+        <div class="btns-container">
+          <button class="btn-add" id="add">Add new device</button>
+          <button class="btn-del" id="del">Remove device</button>
+        </div>
+
+        <div class="main__section main__devlist" id="Devices">
+
+        </div>
+
+        <div class="main__section main__grouplist" id="Groups"></div>
+        <div class="main__section" id="Options"></div>
+      </section>
+      
+    </div>
   </body>
 </html>
