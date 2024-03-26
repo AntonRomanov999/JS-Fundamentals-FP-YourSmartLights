@@ -45,10 +45,38 @@
               id="light-dim"
             />
             <p>Brightness</p>
+            <label for="lights">Add device to group:</label>
+            <select name="All lights" id="lights">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
           </div>
         </div>
       </div>
-      <div class="main__section" id="Groups"></div>
+
+      <div class="main__section" id="Groups">
+        <div class="device-card frame-inner">
+          <div class="device-card__main">
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <h2 class="device-card__name device-on">Lamp 1 (kitchen)</h2>
+          </div>
+          <div class="device-card__params">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="1"
+              class="slider-dim"
+              id="light-dim"
+            />
+            <p>Brightness</p>
+          </div>
+        </div>
+      </div>
+      
       <div class="main__section" id="Options"></div>
     </section>
 

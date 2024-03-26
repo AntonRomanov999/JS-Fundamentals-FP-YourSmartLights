@@ -5,14 +5,12 @@ import {
   displayGreetings,
 } from "./modules/clock.js";
 import { displayWeather } from "./modules/weather.js";
+import { Home, Group, Light } from "./modules/devices.js";
 import {
-  Home,
-  Group,
-  Light,
-  renderLights,
+  renderItems,
   addNewLight,
   remLight,
-} from "./modules/devices.js";
+} from "./modules/light-functions.js";
 
 changeTab();
 showDetails();
@@ -33,25 +31,15 @@ displayState();
 Light.addNewLight("MyLamp1");
 Light.addNewLight("MyLamp2");
 Light.addNewLight("MyLamp3");
-Group.addNewGroup(Home, "Room1");
+Group.addNewGroup(Home, "Room2");
 
 Light.addToGroup("Room2", Home.allLights.MyLamp1);
+Light.addToGroup("Room2", Home.allLights.MyLamp2);
 
-console.log(Home.Room2);
-console.log(Object.values(Home.Room2));
-Light.onGroup("Room2");
-Home.allLights.MyLamp1.powerOff();
-console.log(Home.allLights.MyLamp1.power);
+
 
 //tests
-renderLights();
+renderItems('light');
+renderItems('group');
 
-const addBtn = document.getElementById("add");
-addBtn.addEventListener("click", () => {
-  addNewLight();
-});
 
-const delBtn = document.getElementById("del");
-delBtn.addEventListener("click", () => {
-  remLight()
-});

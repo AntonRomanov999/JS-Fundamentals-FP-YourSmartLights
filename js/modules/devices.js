@@ -1,20 +1,14 @@
 const Home = {
-  allLights: {},
-  allAirConds: {},
-  allHeaters: {},
+  allLights: {
+    name: 'All lights in the house'
+  },
+  allAirConds: {
+    name: 'All air conditioners in the house'
+  },
+  allHeaters: {
+    name: 'All heaters in the'
+  },
 };
-
-class Group {
-  constructor(name) {
-    this.name = name;
-  }
-  static addNewGroup(section, newName) {
-    section[newName] = new Group(newName);
-  }
-  static removeGroup(section, name) {
-    delete section[name];
-  }
-}
 
 class Device {
   #power;
@@ -52,19 +46,25 @@ class Device {
       delete group[device.name];
     }
   }
-  static onGroup(groupName) {
+  static switchPowerGroup(groupName) {
+    Home[groupName].powerSwitch();
     Object.values(Home[groupName]).forEach((i) => {
       if (i instanceof Device) {
-        i.powerOn();
+        i.powerSwitch();
       }
     });
   }
-  static offGroup(groupName) {
-    Object.values(Home[groupName]).forEach((i) => {
-      if (i instanceof Device) {
-        i.powerOff();
-      }
-    });
+}
+
+class Group extends Device {
+  constructor(name) {
+    super(name);
+  }
+  static addNewGroup(gr, newName) {
+    gr[newName] = new Group(newName);
+  }
+  static removeGroup(gr, name) {
+    delete gr[name];
   }
 }
 
@@ -75,10 +75,10 @@ class Light extends Device {
     this.#brightness = 40;
   }
   static addNewLight(newName) {
-    Home.allLights[newName] = new Light(newName);
+    if (newName) { Home.allLights[newName] = new Light(newName); }
   }
   static removeLight(name) {
-    delete Home.allLights[name];
+    if (name) { delete Home.allLights[name]; } 
   }
   get brightness() {
     return this.#brightness;
@@ -90,104 +90,4 @@ class Light extends Device {
   }
 }
 
-const devicesList = document.querySelector(".main__devlist");
-let lightForRm;
-
-function renderLights() {
-  const lights = Object.values(Home.allLights);
-
-  for (let i = 0; i < lights.length; i++) {
-    const light = lights[i];
-
-    // Create device card
-    const deviceCard = document.createElement("div");
-    deviceCard.classList.add("device-card", "frame-inner");
-
-    // Create device main section
-    const deviceMain = document.createElement("div");
-    deviceMain.classList.add("device-card__main");
-
-    // Create power switch
-    const powerSwitchLabel = document.createElement("label");
-    powerSwitchLabel.classList.add("switch");
-    const powerSwitchInput = document.createElement("input");
-    powerSwitchInput.type = "checkbox";
-    powerSwitchInput.checked = light.power === "on";
-    const powerSwitchSpan = document.createElement("span");
-    powerSwitchSpan.classList.add("slider", "round");
-    powerSwitchLabel.appendChild(powerSwitchInput);
-    powerSwitchLabel.appendChild(powerSwitchSpan);
-    deviceMain.appendChild(powerSwitchLabel);
-
-    // Create device name
-    const deviceName = document.createElement("h2");
-    deviceName.classList.add("device-card__name");
-    deviceName.textContent = `${light.name} (${light.power})`;
-    deviceMain.appendChild(deviceName);
-
-    // Append device main section
-    deviceCard.appendChild(deviceMain);
-
-    // Create device parameters section
-    const deviceParams = document.createElement("div");
-    deviceParams.classList.add("device-card__params");
-
-    // Create brightness control
-    const brightnessInput = document.createElement("input");
-    brightnessInput.type = "range";
-    brightnessInput.min = 0;
-    brightnessInput.max = 100;
-    brightnessInput.value = light.brightness;
-    brightnessInput.classList.add("slider-dim");
-    brightnessInput.id = `light-dim-${i}`;
-    const brightnessLabel = document.createElement("p");
-    brightnessLabel.textContent = "Brightness";
-    deviceParams.appendChild(brightnessInput);
-    deviceParams.appendChild(brightnessLabel);
-
-    // Append device parameters section
-    deviceCard.appendChild(deviceParams);
-
-    // Append device card to device list
-    devicesList.appendChild(deviceCard);
-
-    // Add event listener for power switch
-    powerSwitchInput.addEventListener("change", () => {
-      light.powerSwitch();
-      deviceName.textContent = `${light.name} (${light.power})`;
-      deviceName.classList.toggle("on");
-    });
-
-    // Add event listener for brightness control
-    brightnessInput.addEventListener("input", () => {
-      light.brightness = parseInt(brightnessInput.value);
-    });
-
-    deviceName.addEventListener("click", () => {
-      light.rename(prompt('Enter new name:'));
-      deviceName.textContent = `${light.name} (${light.power})`;
-    });
-
-    deviceCard.addEventListener("click", () => {
-      deviceCard.classList.toggle("current");
-      lightForRm = `${light.name}`;
-    });
-  }
-}
-
-function addNewLight() {
-    Light.addNewLight(prompt('Enter new name:'));
-    devicesList.innerHTML = "";
-    renderLights()
-}
-
-function remLight() {
-  Light.removeLight(lightForRm);
-  devicesList.innerHTML = "";
-  renderLights();
-}
-
-const groupList = document.querySelector(".main__grouplist");
-let groupForRm;
-
-export { Home, Group, Light, renderLights, addNewLight, remLight };
+export { Home, Device, Group, Light };
