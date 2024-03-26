@@ -1,4 +1,4 @@
-import { apiReq } from "./api-pass.js";
+import { apiReq } from "./api-req.js";
 const infWeather = document.querySelector(".info__weather");
 
 async function getWeather(value) {
