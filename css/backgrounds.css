@@ -1,24 +1,28 @@
 .night-back {
     height: 100%;
-    background-image: linear-gradient(to bottom, #020138 15%, #505390 85%, #766D6D 100%);
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #020138 15%, #505390 90%, #766D6D 100%);
     background-repeat: no-repeat;  
 }
 
 .day-back {
     height: 100%;
+    min-height: 100vh;
     background-image: linear-gradient(to bottom, #0C4485 15%, #A7AAED 90%, #FFFFFF 100%);
     background-repeat: no-repeat;
 }
 
 .evening-back {
     height: 100%;
-    background-image: linear-gradient(to bottom, #293B56 15%, #FF9E75 85%, #FDFFEC 100%);
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #293B56 15%, #FF9E75 90%, #FDFFEC 100%);
     background-repeat: no-repeat;
 }
 
 .morning-back {
     height: 100%;
-    background-image: linear-gradient(to bottom, #187BC2 15%, #A7C3D7 85%, #FFFDCA 100%);
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #187BC2 15%, #A7C3D7 90%, #FFFDCA 100%);
     background-repeat: no-repeat;
 }
 

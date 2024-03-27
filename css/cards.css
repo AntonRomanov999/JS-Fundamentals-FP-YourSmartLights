@@ -25,6 +25,9 @@
 .device-card__name {
     color: gray;
     font-weight: lighter;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
 }
 
 .device-card__name.on {
@@ -43,5 +46,12 @@
     height: 30px;
     border-radius: 10px;
     padding: 5px;
+}
+
+.device-icon {
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    margin: 10px 10px 10px 30px;
 }
 

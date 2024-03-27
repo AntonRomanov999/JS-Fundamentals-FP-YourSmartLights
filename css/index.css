@@ -97,3 +97,23 @@
   gap: 10px;
 }
 
+.main__scene {
+  color: var(--txt-active);
+}
+
+.main__scene input {
+  border-style: none;
+  border-color: var(--txt-active);
+  color: var(--txt-active);
+  height: 30px;
+  background-color: var(--back-main);
+  cursor: pointer;
+  padding: 5px 15px 5px 15px;
+}
+
+.time-inputs {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 18px;
+}

@@ -14,7 +14,7 @@ class Device {
   #power;
   constructor(name) {
     this.name = name;
-    this.#power = "off";
+    this.#power = "on";
   }
   get power() {
     return this.#power;
@@ -70,9 +70,11 @@ class Group extends Device {
 
 class Light extends Device {
   #brightness;
+  #colorTemp;
   constructor(name) {
     super(name);
-    this.#brightness = 40;
+    this.#brightness = 90;
+    this.#colorTemp = 10;
   }
   static addNewLight(newName) {
     if (newName) { Home.allLights[newName] = new Light(newName); }
@@ -86,6 +88,14 @@ class Light extends Device {
   set brightness(value) {
     if (value >= 0 && value <= 100) {
       this.#brightness = value;
+    }
+  }
+  get colorTemp() {
+    return this.#colorTemp;
+  }
+  set colorTemp(value) {
+    if (value >= 0 && value <= 100) {
+      this.#colorTemp = value;
     }
   }
 }

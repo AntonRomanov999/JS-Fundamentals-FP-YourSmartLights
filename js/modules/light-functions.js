@@ -3,11 +3,28 @@ const devicesList = document.querySelector(".main__devlist");
 let itemForRm;
 const groupList = document.querySelector(".main__grouplist");
 
+
+function checkStateLights() {
+  let stateOfLights;
+  let statesLights = Object.values(Home.allLights).filter(
+    (i) => i instanceof Light
+  ).map(obj => obj.power);
+  if (statesLights.every((i) => i === 'off')) {
+    stateOfLights = 'all lights are OFF';
+  } else {
+    stateOfLights = 'some lights are ON';
+  }
+  return stateOfLights;
+}
+
 function giveAllLights() {
   const listLights = Object.values(Home.allLights).filter(
     (i) => i instanceof Light
   );
   const selectLights = document.createElement("select");
+  const firsString = document.createElement("option");
+  firsString.textContent = "Choose light to add:";
+  selectLights.appendChild(firsString);
   for (let i = 0; i < listLights.length; i++) {
     const light = document.createElement("option");
     light.value = listLights[i].name;
@@ -15,6 +32,16 @@ function giveAllLights() {
     selectLights.appendChild(light);
   }
   return selectLights;
+}
+
+function renderGroupContent(group, place) {
+  // display group content
+  const groupPContent = [];
+  const groupContent = Object.values(group).filter((i) => i instanceof Light);
+  groupContent.forEach((i) => {
+    groupPContent.push(` ${i.name}`);
+  });
+  place.insertAdjacentHTML("beforeend", `<p>${groupPContent.toString()}</p>`);
 }
 
 function renderItems(type) {
@@ -54,12 +81,32 @@ function renderItems(type) {
     itemMain.appendChild(powerSwitchLabel);
 
     // Create device name
-    const itemName = document.createElement("h2");
+    const itemName = document.createElement("div");
     itemName.classList.add("device-card__name");
     if (device.power === "on") {
       itemName.classList.add("on");
     }
+    // put brightness indicator
+    function renderIcon() {
+      if (type === "light") {
+        let devIcon = document.createElement("div");
+        devIcon.classList.add("device-icon");
+        if (device.power === "on") {
+          let colorBrightness = device.brightness * 0.1;
+          let colorTemp = device.colorTemp;
+          devIcon.style.backgroundColor = `rgb(255, 255, ${
+            255 - 0.5 * colorTemp
+          })`;
+          devIcon.style.boxShadow = `0 0 10px ${colorBrightness}px rgba(255, 255, ${
+            255 - 0.5 * colorTemp
+          })`;
+        }
+        itemName.appendChild(devIcon);
+      }
+    }
+    let devIcon;
     itemName.textContent = `${deviceName} (${device.power})`;
+    renderIcon();
     itemMain.appendChild(itemName);
 
     // Append device main section
@@ -69,7 +116,7 @@ function renderItems(type) {
     const itemParams = document.createElement("div");
     itemParams.classList.add("device-card__params");
 
-    // Create brightness control
+    // Create brightness and color controls
     if (type === "light") {
       const brightnessInput = document.createElement("input");
       brightnessInput.type = "range";
@@ -79,37 +126,60 @@ function renderItems(type) {
       brightnessInput.classList.add("slider-dim");
       brightnessInput.id = `light-dim-${i}`;
       const brightnessLabel = document.createElement("p");
-      brightnessLabel.textContent = "Brightness";
+      brightnessLabel.textContent = "Brightness (dark < > bright)";
       itemParams.appendChild(brightnessInput);
       itemParams.appendChild(brightnessLabel);
-      // Add event listener for brightness control
+      const colorInput = document.createElement("input");
+      colorInput.type = "range";
+      colorInput.min = 0;
+      colorInput.max = 100;
+      colorInput.value = device.colorTemp;
+      colorInput.classList.add("slider-dim");
+      colorInput.id = `light-dim-${i}`;
+      const colorLabel = document.createElement("p");
+      colorLabel.textContent = "Color  (cold < > warm)";
+      itemParams.appendChild(colorInput);
+      itemParams.appendChild(colorLabel);
+      // Add event listener for brightness an color controls
       brightnessInput.addEventListener("input", () => {
         device.brightness = parseInt(brightnessInput.value);
+        itemName.removeChild(itemName.lastChild);
+        renderIcon();
+      });
+      colorInput.addEventListener("input", () => {
+        device.colorTemp = parseInt(colorInput.value);
+        itemName.removeChild(itemName.lastChild);
+        renderIcon();
       });
     }
-
     //Put selector
+    let selectLights = giveAllLights();
     if (type === "group") {
       const selectLightsLabel = document.createElement("label");
       selectLightsLabel.textContent = "Add light to group:";
       itemParams.appendChild(selectLightsLabel);
-      itemParams.appendChild(giveAllLights());
-      
+      selectLights.addEventListener("change", (event) => {
+        const devToAdd = event.target.value;
+        Light.addToGroup(`${device.name}`, Home.allLights[devToAdd]);
+        selectLights.removeChild(
+          selectLights.options[selectLights.selectedIndex]
+        );
+        itemParams.removeChild(itemParams.lastChild);
+        renderGroupContent(device, itemParams);
+      });
+      itemParams.appendChild(selectLights);
+      renderGroupContent(device, itemParams);
     }
-
     // Append device parameters section
     itemCard.appendChild(itemParams);
-
     // Append device card to device list
     itemList.appendChild(itemCard);
-
     itemName.addEventListener("click", () => {
       device.rename(prompt("Enter new name:"));
       deviceName === device.name;
       itemName.textContent = `${device.name} (${device.power})`;
-      console.log(device);
+      renderIcon();
     });
-
     // Add event listener for power switch
     powerSwitchInput.addEventListener("change", () => {
       if (type === "group") {
@@ -117,6 +187,7 @@ function renderItems(type) {
       } else device.powerSwitch();
       itemName.textContent = `${device.name} (${device.power})`;
       itemName.classList.toggle("on");
+      renderIcon();
     });
 
     itemCard.addEventListener("click", () => {
@@ -150,11 +221,13 @@ function delGroup() {
 
 function regenLists() {
   devicesList.innerHTML = "";
+  groupList.innerHTML = "";
+  renderItems("group");
   renderItems("light");
-  console.log("RUN");
 }
 
 export {
+  checkStateLights,
   renderItems,
   addNewLight,
   remLight,

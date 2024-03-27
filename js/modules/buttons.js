@@ -23,11 +23,18 @@ function changeTab() {
       });
       this.classList.add("active");
       if (this.textContent === "Groups") {
+        addBtn.style.display = "inline-block";
+        delBtn.style.display = "inline-block";
         addBtn.textContent = "Create new group";
         delBtn.textContent = "Delete group";
-      } else {
+      } else if (this.textContent === "Devices") {
+        addBtn.style.display = "inline-block";
+        delBtn.style.display = "inline-block";
         addBtn.textContent = "Add new device";
         delBtn.textContent = "Remove device";
+      } else if (this.textContent === "Options") {
+        addBtn.style.display = "none";
+        delBtn.style.display = "none";
       }
       tabs.forEach((sect) => {
         sect.classList.remove("active");
