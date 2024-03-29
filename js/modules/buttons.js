@@ -14,6 +14,7 @@ const tabs = [...document.getElementsByClassName("main__section")];
 
 const addBtn = document.getElementById("add");
 const delBtn = document.getElementById("del");
+let tabAct = 'light';
 
 function changeTab() {
   btns[0].classList.add("active");
@@ -30,11 +31,15 @@ function changeTab() {
         delBtn.style.display = "inline-block";
         addBtn.textContent = "Create new group";
         delBtn.textContent = "Delete group";
+        tabAct = 'group';
+        console.log(tabAct);
       } else if (this.textContent === "Devices") {
         addBtn.style.display = "inline-block";
         delBtn.style.display = "inline-block";
         addBtn.textContent = "Add new light";
         delBtn.textContent = "Remove light";
+        tabAct = 'light';
+        console.log(tabAct);
       } else if (this.textContent === "Options") {
         addBtn.style.display = "none";
         delBtn.style.display = "none";
@@ -50,14 +55,14 @@ function changeTab() {
 }
 
 addBtn.addEventListener("click", () => {
-  if (addBtn.textContent === "Add new device") {
+  if (tabAct === 'light') {
     addNewLight();
-  } else createGroup()
+  } else if (tabAct = 'group') createGroup()
 }); 
 delBtn.addEventListener("click", () => {
-  if (addBtn.textContent === "Add new device") {
+  if (tabAct === 'light') {
     remLight();
-  } else delGroup()
+  } else if (tabAct = 'group') delGroup()
 });
 
 function showDetails() {
@@ -78,10 +83,10 @@ shedBtnSun.addEventListener("click", () => {
   sheduleAction('sun');
 });
 
-const addBtnAC = document.getElementById("add-air");
-const delBtnAC = document.getElementById("del-air");
-addBtnAC.addEventListener("click", () => addNewAir());
-delBtnAC.addEventListener("click", () => removeAir());
+const add_BtnAC = document.getElementById("add-air");
+const del_BtnAC = document.getElementById("del-air");
+add_BtnAC.addEventListener("click", () => addNewAir());
+del_BtnAC.addEventListener("click", () => removeAir());
 
 const airAutoBtn = document.getElementById("air-auto");
 airAutoBtn.addEventListener("click", () => { 

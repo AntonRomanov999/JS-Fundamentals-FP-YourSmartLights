@@ -45,7 +45,7 @@ const tempOut = Math.round(await getWeather("temp"));
 async function displayWeather() {
   const Weather = await getWeather("weather");
   const sun = await getSunTimes();
-  infWeather.innerHTML = `Outside ${tempOut}°C, ${Weather}, sunrise at ${sun.sunriseHr}:${sun.sunriseMin}, sunset at ${sun.sunsetHr}:${sun.sunsetMin}`;
+  infWeather.innerHTML = `Outside ${tempOut}°C, ${Weather}, <br> sunrise at ${sun.sunriseHr}:${sun.sunriseMin}, <br> sunset at ${sun.sunsetHr}:${sun.sunsetMin}`;
 }
 
 export { displayWeather, getSunTimes, tempOut };

@@ -3,6 +3,10 @@
 @import "backgrounds.css";
 @import "cards.css";
 
+.container {
+  max-width: 1200px;
+}
+
 .frame-main {
   margin: 20px;
   display: grid;
@@ -104,14 +108,19 @@
 }
 
 .main__section {
-  display: none;
+  display: none !important;
 }
 
 .main__section.active {
-  display: grid;
+  display: grid !important;
 }
 
 .main__devlist {
+  display: grid;
+  gap: 10px;
+}
+
+.main__devlist-ac {
   display: grid;
   gap: 10px;
 }

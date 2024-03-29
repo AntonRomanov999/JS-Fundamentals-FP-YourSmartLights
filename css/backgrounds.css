@@ -15,7 +15,7 @@
 .evening-back {
     height: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, #24344c 15%, #db8662 90%, rgb(204, 206, 185) 100%);
+    background-image: linear-gradient(to bottom, #1e2c41 15%, #cd7d5b 90%, rgb(192, 194, 172) 100%);
     background-repeat: no-repeat;
 }
 

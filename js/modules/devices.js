@@ -4,10 +4,7 @@ const Home = {
   },
   allAirs: {
     name: "All air conditioners in the house",
-  },
-  allHeaters: {
-    name: "All heaters in the house",
-  },
+  }
 };
 
 class Device {
@@ -79,7 +76,9 @@ class Group extends Device {
     super(name);
   }
   static addNewGroup(gr, newName) {
-    gr[newName] = new Group(newName);
+    if (newName) {
+      gr[newName] = new Group(newName);
+    } 
   }
   static removeGroup(gr, name) {
     delete gr[name];
@@ -198,7 +197,7 @@ function saveSysData() {
 
   localStorage.removeItem("allLights");
   localStorage.setItem("allLights", allLightsString);
-  console.log(allLightsString);
+
 }
 
 function readSysData() {
@@ -227,5 +226,7 @@ function readSysData() {
     }
   });
 }
+
+
 
 export { Home, Device, Group, Light, Air, readSysData, saveSysData};

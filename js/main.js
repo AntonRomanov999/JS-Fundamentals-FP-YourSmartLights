@@ -18,7 +18,7 @@ import { renderAir, airState } from "./modules/air.js";
 readSysData();
 changeTab();
 showDetails();
-
+renderAir();
 
 const infState = document.querySelector(".info__state");
 
@@ -27,23 +27,14 @@ function displayState() {
   infState.innerHTML = `${checkStateLights()} <br> ${airState()}`;
 }
 
-// //test
-// Light.addNewLight("MyLamp1");
-// Light.addNewLight("MyLamp2");
-// Light.addNewLight("MyLamp3");
-// Light.addToGroup('Room2', Home.allLights.MyLamp1);
-// console.log(Home.allLights)
-// //test
-Air.addNewAir("Room1");
-renderAir();
-
 displayWeather();
 displayGreetings();
-setInterval(displayTimeAndDate, 1000);
-setInterval(displayState, 1000);
 displayTimeAndDate();
 renderItems('light');
 renderItems('group');
 giveAllGroups();
+
+setInterval(displayTimeAndDate, 1000);
+setInterval(displayState, 1000);
 
 

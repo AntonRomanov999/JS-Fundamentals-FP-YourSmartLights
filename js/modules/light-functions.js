@@ -172,7 +172,6 @@ function renderItems(type) {
         );
         itemParams.removeChild(itemParams.lastChild);
         renderGroupContent(device, itemParams);
-        saveSysData();
       });
       itemParams.appendChild(selectLights);
       renderGroupContent(device, itemParams);
@@ -186,7 +185,6 @@ function renderItems(type) {
       deviceName === device.name;
       itemName.textContent = `${device.name} (${device.power})`;
       renderIcon();
-      saveSysData();
     });
     // Add event listener for power switch
     powerSwitchInput.addEventListener("change", () => {
@@ -196,13 +194,11 @@ function renderItems(type) {
       itemName.textContent = `${device.name} (${device.power})`;
       itemName.classList.toggle("on");
       renderIcon();
-      saveSysData();
     });
 
     itemCard.addEventListener("click", () => {
       itemCard.classList.toggle("current");
       itemForRm = `${deviceName}`;
-      saveSysData();
     });
   }
 }
@@ -214,6 +210,7 @@ function addNewLight() {
 }
 
 function remLight() {
+  console.log(itemForRm);
   Light.removeLight(itemForRm);
   regenLists();
   saveSysData();

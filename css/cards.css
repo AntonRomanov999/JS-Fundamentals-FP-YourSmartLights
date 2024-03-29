@@ -14,7 +14,7 @@
 
 .device-card.current {
     opacity: 1;
-    box-shadow: 5px 5px 5px gray;
+    box-shadow: 5px 5px 5px rgb(90, 89, 89);
 }
 
 .device-card div.device-card__main {

@@ -10,89 +10,92 @@
   </head>
 
   <body class="day-back">
-    <div class="frame-main">
-      <section class="info frame">
-        <div class="info__time frame-inner">
-          <div class="info__time-clock"></div>
-          <div class="info__time-date"></div>
-          <button class="btn-arrow">
-            <svg>
-              <use href="/img/arrow.svg#arrow"></use>
-            </svg>
-          </button>
-        </div>
-        <div class="info__details">
-          <p class="info__weather"></p>
-          <hr />
-          <div class="info__state"></div>
-        </div>
-      </section>
-
-      <section class="main frame">
-        <p class="main__greetings"></p>
-
-        <div class="btns-container" id="sections">
-          <button class="btn-sect">Devices</button>
-          <button class="btn-sect">Groups</button>
-          <button class="btn-sect">Options</button>
-        </div>
-        <div class="btns-container">
-          <button class="btn-add" id="add">Add new device</button>
-          <button class="btn-del" id="del">Remove device</button>
-        </div>
-        <div class="main__section main__devlist" id="Devices"></div>
-        <div class="main__section main__grouplist" id="Groups"></div>
-        <div class="main__section" id="Options">
-          <div class="main__scene frame-inner">
-            <h2>Select a group of devices to turn on/off on a schedule:</h2>
-            <ul class="list-groups"></ul>
-            <div class="time-inputs">
-              <label for="time-to-on">Choose time to power on:</label>
-              <input
-                type="time"
-                id="time-to-on"
-                name="time-to-on"
-                min="09:00"
-                max="18:00"
-              />
-              <label for="time-to-off">Choose time to power off:</label>
-              <input
-                type="time"
-                id="time-to-off"
-                name="time-to-off"
-                min="09:00"
-                max="18:00"
-              />
-            </div>
-            <div class="message"></div>
-            <button class="btn-shed" id="user-shedule">
-              Shedule selected groups
-            </button>
-            <button class="btn-shed" id="sun-shedule">
-              Shedule on sunset/sunrise time
+    <div class="container">
+      <div class="frame-main">
+        <section class="info frame">
+          <div class="info__time frame-inner">
+            <div class="info__time-clock"></div>
+            <div class="info__time-date"></div>
+            <button class="btn-arrow">
+              <svg>
+                <use href="/img/arrow.svg#arrow"></use>
+              </svg>
             </button>
           </div>
+          <div class="info__details">
+            <p class="info__weather"></p>
+            <hr />
+            <div class="info__state"></div>
+          </div>
+        </section>
+  
+        <section class="main frame">
+          <p class="main__greetings"></p>
+  
+          <div class="btns-container" id="sections">
+            <button class="btn-sect">Devices</button>
+            <button class="btn-sect">Groups</button>
+            <button class="btn-sect">Options</button>
+          </div>
+          <div class="btns-container">
+            <button class="btn-add" id="add">Add new device</button>
+            <button class="btn-del" id="del">Remove device</button>
+          </div>
+          <div class="main__section main__devlist" id="Devices"></div>
+          <div class="main__section main__grouplist" id="Groups"></div>
+          <div class="main__section" id="Options">
+            <div class="main__scene frame-inner">
+              <h2>Select a group of devices to turn on/off on a schedule:</h2>
+              <ul class="list-groups"></ul>
+              <div class="time-inputs">
+                <label for="time-to-on">Choose time to power on:</label>
+                <input
+                  type="time"
+                  id="time-to-on"
+                  name="time-to-on"
+                  min="09:00"
+                  max="18:00"
+                />
+                <label for="time-to-off">Choose time to power off:</label>
+                <input
+                  type="time"
+                  id="time-to-off"
+                  name="time-to-off"
+                  min="09:00"
+                  max="18:00"
+                />
+              </div>
+              <div class="message"></div>
+              <button class="btn-shed" id="user-shedule">
+                Shedule selected groups
+              </button>
+              <button class="btn-shed" id="sun-shedule">
+                Shedule on sunset/sunrise time
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="frame-second frame-inner">
+        <div class="frame-inner controls">
+          <h2 class="name-air">Air conditioners control</h2>
+          <div class="btns-container">
+            <button class="btn-add small" id="add-air">Add AC</button>
+            <button class="btn-del small" id="del-air">Remove AC</button>
+          </div>
+          <div class="btns-container">
+            <button class="btn-shed small" id="air-auto">Autocontrol</button>
+          </div>
+          <div class="btns-container">
+            <button class="btn-shed small" id="air-off">OFF all AC</button>
+          </div>
         </div>
-      </section>
-    </div>
-    <div class="frame-second frame-inner">
-      <div class="frame-inner controls">
-        <h2 class="name-air">Air conditioners control</h2>
-        <div class="btns-container">
-          <button class="btn-add small" id="add-air">Add AC</button>
-          <button class="btn-del small" id="del-air">Remove AC</button>
-        </div>
-        <div class="btns-container">
-          <button class="btn-shed small" id="air-auto">Autocontrol</button>
-        </div>
-        <div class="btns-container">
-          <button class="btn-shed small" id="air-off">OFF all AC</button>
+        <div>
+          <div class="main__devlist-ac" id="AirCs"></div>
         </div>
       </div>
-      <div>
-        <div class="main__devlist" id="AirCs"></div>
-      </div>
     </div>
+
     
   </body>
 </html>

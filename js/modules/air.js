@@ -11,14 +11,15 @@ function addNewAir() {
 
 function removeAir() {
   Air.removeAir(airForRm);
+  regenAir();
 }
 
 function airState() {
-  let items = Object.values(Home.allAirs).filter((i) => i instanceof Air);
-  let onItems = items.filter((i) => (i.power === "on"));
-  if (items.length > 0 && onItems.length > 0) {
-    return `A total of ${items.length} AC in the system, currently ${onItems.length} of them are ON)`;
-  } else if (items.length > 0 && onItems.length === 0) { return `A total of ${items.length} AC in the system, all are OFF)` } else 
+  let ac = Object.values(Home.allAirs).filter((i) => i instanceof Air);
+  let onAc = ac.filter((i) => (i.power === "on"));
+  if (ac.length > 0 && onAc.length > 0) {
+    return `A total of ${ac.length} AC in the system, currently ${onAc.length} of them are ON)`;
+  } else if (ac.length > 0 && onAc.length === 0) { return `A total of ${ac.length} AC in the system, all are OFF)` } else 
   return `There are no AC in the system)`
 }
 
