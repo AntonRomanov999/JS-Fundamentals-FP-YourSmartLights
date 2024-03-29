@@ -7,6 +7,11 @@
     gap: 20px;
 }
 
+.controls {
+    color: var(--txt-active);
+    max-height: fit-content;    
+}
+
 .device-card.current {
     opacity: 1;
     box-shadow: 5px 5px 5px gray;
@@ -70,3 +75,4 @@
     background-color: rgb(255, 255, 240);
     box-shadow: 0 0 10px 5px rgba(255, 255, 240, 0.8)
 }
+

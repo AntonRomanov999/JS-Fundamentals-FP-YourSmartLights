@@ -7,6 +7,7 @@ import {
 } from "./light-functions.js";
 import { giveAllGroups, sheduleAction, switchGroup } from "./light-auto.js";
 import { Home, Group, Light, Device } from "./devices.js";
+import { renderAir, addNewAir, removeAir, autoAir } from "./air.js";
 
 const btns = [...document.getElementById("sections").children];
 const tabs = [...document.getElementsByClassName("main__section")];
@@ -32,8 +33,8 @@ function changeTab() {
       } else if (this.textContent === "Devices") {
         addBtn.style.display = "inline-block";
         delBtn.style.display = "inline-block";
-        addBtn.textContent = "Add new device";
-        delBtn.textContent = "Remove device";
+        addBtn.textContent = "Add new light";
+        delBtn.textContent = "Remove light";
       } else if (this.textContent === "Options") {
         addBtn.style.display = "none";
         delBtn.style.display = "none";
@@ -77,5 +78,19 @@ shedBtnSun.addEventListener("click", () => {
   sheduleAction('sun');
 });
 
+const addBtnAC = document.getElementById("add-air");
+const delBtnAC = document.getElementById("del-air");
+addBtnAC.addEventListener("click", () => addNewAir());
+delBtnAC.addEventListener("click", () => removeAir());
+
+const airAutoBtn = document.getElementById("air-auto");
+airAutoBtn.addEventListener("click", () => { 
+  autoAir('auto');  
+});
+
+const airOffBtn = document.getElementById("air-off");
+airOffBtn.addEventListener("click", () => { 
+  autoAir('off');  
+});
 
 export { changeTab, showDetails };

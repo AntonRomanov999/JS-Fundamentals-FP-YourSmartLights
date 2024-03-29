@@ -102,7 +102,6 @@ async function sheduleAction(option) {
         ", "
       )} will be turned on at ${hourOn}:${minOn}, turned off at ${hourOff}:${minOff}`;
       messContainer.textContent = `${result}`;
-      // saveSysData();
       setTimeout(() => {
         switchGroup("on");
         console.log("On!!!");

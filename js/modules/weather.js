@@ -41,11 +41,11 @@ async function getSunTimes() {
   };
 }
 
+const tempOut = Math.round(await getWeather("temp"));
 async function displayWeather() {
-  const tempOut = Math.round(await getWeather("temp"));
   const Weather = await getWeather("weather");
   const sun = await getSunTimes();
-  infWeather.innerHTML = `Outside ${tempOut}°C, ${Weather}, sunrise at ${sun.sunriseHr}:${sun.sunriseMin}, setset at ${sun.sunsetHr}:${sun.sunsetMin}`;
+  infWeather.innerHTML = `Outside ${tempOut}°C, ${Weather}, sunrise at ${sun.sunriseHr}:${sun.sunriseMin}, sunset at ${sun.sunsetHr}:${sun.sunsetMin}`;
 }
 
-export { displayWeather, getSunTimes };
+export { displayWeather, getSunTimes, tempOut };

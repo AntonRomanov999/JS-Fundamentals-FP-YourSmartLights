@@ -2,7 +2,7 @@ const Home = {
   allLights: {
     name: "All lights in the house",
   },
-  allAirConds: {
+  allAirs: {
     name: "All air conditioners in the house",
   },
   allHeaters: {
@@ -122,6 +122,55 @@ class Light extends Device {
   }
 }
 
+class Air extends Device {
+  #temp;
+  #mainmode;
+  #mode;
+  #possiblemods;
+  constructor(name) {
+    super(name);
+    this.#mainmode = 'cool';
+    this.#mode = 'fan';
+    this.#possiblemods = [ 'dry', 'fan', 'turbo', 'quiet' ];
+    this.#temp = 22;
+  }
+  get mainmode() {
+    return this.#mainmode;
+  }
+  set mainmode(value) {
+    if (value === 'cool' || value === 'heat')
+      this.#mainmode = value
+  }
+    get possiblemods() {
+    return this.#possiblemods;
+  }
+  get mode() {
+    return this.#mode;
+  }
+  set mode(value) {
+    if (this.#possiblemods.includes(value))
+      this.#mode = value;
+  }
+  get temp() {
+    return this.#temp;
+  }
+  set temp(value) {
+    if (value >= 16 && value <= 24) {
+      this.#temp = value;
+    }
+  }
+  static addNewAir(newName) {
+    if (newName) {
+      Home.allAirs[newName] = new Air(newName);
+    }
+  }
+  static removeAir(name) {
+    if (name) {
+      delete Home.allAirs[name];
+    }
+  }
+}
+
 function saveSysData() {
   const dataLights = Object.values(Home.allLights).filter(
     (i) => i instanceof Light
@@ -179,4 +228,4 @@ function readSysData() {
   });
 }
 
-export { Home, Device, Group, Light, readSysData, saveSysData};
+export { Home, Device, Group, Light, Air, readSysData, saveSysData};

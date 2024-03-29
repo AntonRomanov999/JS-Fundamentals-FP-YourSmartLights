@@ -5,7 +5,7 @@ import {
   displayGreetings,
 } from "./modules/clock.js";
 import { displayWeather } from "./modules/weather.js";
-import { Home, Group, Light, readSysData } from "./modules/devices.js";
+import { Home, Group, Light, Air, readSysData } from "./modules/devices.js";
 import {
   checkStateLights,
   renderItems,
@@ -13,10 +13,12 @@ import {
   remLight,
 } from "./modules/light-functions.js";
 import { listAllGroups, giveAllGroups } from "./modules/light-auto.js";
+import { renderAir } from "./modules/air.js";
 
 readSysData();
 changeTab();
 showDetails();
+
 
 const infState = document.querySelector(".info__state");
 // let tempIn = 22;
@@ -27,12 +29,14 @@ function displayState() {
 }
 
 // //test
-// Light.addNewLight("MyLamp1", );
+// Light.addNewLight("MyLamp1");
 // Light.addNewLight("MyLamp2");
 // Light.addNewLight("MyLamp3");
 // Light.addToGroup('Room2', Home.allLights.MyLamp1);
 // console.log(Home.allLights)
 // //test
+Air.addNewAir("Room1");
+renderAir();
 
 displayWeather();
 displayGreetings();

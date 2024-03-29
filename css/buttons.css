@@ -140,6 +140,14 @@ input:checked + .slider:before {
   box-shadow: 5px 5px 5px black;
 }
 
+.btn-del.small {
+  font-size: 19px;
+}
+
+.btn-add.small {
+  font-size: 19px;
+}
+
 .btns-container {
   display: flex;
   justify-content: space-between;
@@ -163,4 +171,32 @@ input:checked + .slider:before {
 .btn-sect.active {
   opacity: 1;
   box-shadow: 5px 5px 5px black;
+}
+
+.ac-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ac-controls button {
+  width: auto;
+  height: 34px;  
+  margin: 5px;
+  background-color: rgb(114, 165, 188);
+  cursor: pointer;
+  border: none;
+  border-radius: 17px;
+  font-size: 22px;
+  color: var(--txt-active);
+  padding: 0 20px 0 20px;
+  box-shadow: 5px 5px 5px rgb(125, 125, 125);
+}
+
+.ac-controls button.heat {
+  background-color: rgba(210, 165, 125, 0.4);
+}
+
+.ac-controls button:hover {
+  background-color: rgba(125, 175, 210, 0.4);
 }

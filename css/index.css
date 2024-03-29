@@ -9,13 +9,25 @@
   gap: 10px;
 }
 
-@media (min-width: 768px) {
+.frame-second {
+  margin: 20px;
+  display: grid;
+  gap: 10px;
+}
 
+@media (min-width: 768px) {
   .frame-main {
     margin: 20px;
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 2fr;
+  }
+
+  .frame-second {
+    margin: 20px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 2fr 3fr;
   }
 }
 
@@ -100,6 +112,7 @@
 }
 
 .main__devlist {
+  display: grid;
   gap: 10px;
 }
 
@@ -156,4 +169,8 @@
 .message {
   font-weight: bold;
   padding: 0 40px 0 40px;
+}
+
+.name-air {
+  padding: 0 20px 0 20px;
 }
