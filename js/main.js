@@ -13,7 +13,7 @@ import {
   remLight,
 } from "./modules/light-functions.js";
 import { listAllGroups, giveAllGroups } from "./modules/light-auto.js";
-import { renderAir } from "./modules/air.js";
+import { renderAir, airState } from "./modules/air.js";
 
 readSysData();
 changeTab();
@@ -21,11 +21,10 @@ showDetails();
 
 
 const infState = document.querySelector(".info__state");
-// let tempIn = 22;
 
 function displayState() {
   infState.innerHTML = ``;
-  infState.innerHTML = `${checkStateLights()}`;
+  infState.innerHTML = `${checkStateLights()} <br> ${airState()}`;
 }
 
 // //test

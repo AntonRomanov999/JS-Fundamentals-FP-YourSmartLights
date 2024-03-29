@@ -13,6 +13,15 @@ function removeAir() {
   Air.removeAir(airForRm);
 }
 
+function airState() {
+  let items = Object.values(Home.allAirs).filter((i) => i instanceof Air);
+  let onItems = items.filter((i) => (i.power === "on"));
+  if (items.length > 0 && onItems.length > 0) {
+    return `A total of ${items.length} AC in the system, currently ${onItems.length} of them are ON)`;
+  } else if (items.length > 0 && onItems.length === 0) { return `A total of ${items.length} AC in the system, all are OFF)` } else 
+  return `There are no AC in the system)`
+}
+
 function autoAir(option) {
   let items = Object.values(Home.allAirs).filter((i) => i instanceof Air);
   for (let i = 0; i < items.length; i++) {
@@ -131,4 +140,4 @@ function regenAir() {
   renderAir();
 }
 
-export { renderAir, addNewAir, removeAir, autoAir };
+export { renderAir, addNewAir, removeAir, autoAir, airState };
