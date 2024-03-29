@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YourSmartHome</title>
+    <title>YourSmartLights</title>
     <link rel="stylesheet" href="css/index.css" />
     <script type="module" src="../js/main.js"></script>
   </head>
@@ -46,14 +46,17 @@
         <div class="main__section main__grouplist" id="Groups"></div>
         <div class="main__section" id="Options">
           <div class="main__scene frame-inner">
-            <h2>Choose group of devices:</h2>
-            <ul id="list-groups"></ul>
+            <h2>Select a group of devices to turn on/off on a schedule:</h2>
+            <ul class="list-groups"></ul>
             <div class="time-inputs">
               <label for="time-to-on">Choose time to power on:</label>
               <input type="time" id="time-to-on" name="time-to-on" min="09:00" max="18:00"/>
               <label for="time-to-off">Choose time to power off:</label>
               <input type="time" id="time-to-off" name="time-to-off" min="09:00" max="18:00"/>
             </div>
+            <div class="message"></div>
+            <button class="btn-shed" id="user-shedule">Shedule selected groups</button>
+            <button class="btn-shed" id="sun-shedule">Shedule on sunset/sunrise time</button>           
           </div>
         </div>
       </section>

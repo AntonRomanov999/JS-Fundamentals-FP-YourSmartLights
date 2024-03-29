@@ -1,18 +1,23 @@
-import { Home, Device, Group, Light } from "./devices.js";
+import { Home, Device, Group, Light, saveSysData } from "./devices.js";
 const devicesList = document.querySelector(".main__devlist");
 let itemForRm;
 const groupList = document.querySelector(".main__grouplist");
-
 
 function checkStateLights() {
   let stateOfLights;
   let statesLights = Object.values(Home.allLights).filter(
     (i) => i instanceof Light
   ).map(obj => obj.power);
+  let totNumLights = 0, onNumLights = 0, offNumLights = 0;
+  statesLights.forEach((i) => {
+  ++totNumLights;
+  if (i === 'on') ++onNumLights;
+  if (i === 'off') ++offNumLights;
+  });
   if (statesLights.every((i) => i === 'off')) {
-    stateOfLights = 'all lights are OFF';
+    stateOfLights = `All lights are OFF (a total of ${totNumLights} lights in the system)`;
   } else {
-    stateOfLights = 'some lights are ON';
+    stateOfLights = `Some lights are ON (a total of ${totNumLights} lights in the system, currently ${onNumLights} of them are ON)`;
   }
   return stateOfLights;
 }
@@ -55,7 +60,6 @@ function renderItems(type) {
     items = Object.values(Home).filter((i) => i instanceof Group);
     itemList = groupList;
   }
-
   for (let i = 0; i < items.length; i++) {
     let device = items[i];
     let deviceName = device.name;
@@ -145,11 +149,13 @@ function renderItems(type) {
         device.brightness = parseInt(brightnessInput.value);
         itemName.removeChild(itemName.lastChild);
         renderIcon();
+        saveSysData();
       });
       colorInput.addEventListener("input", () => {
         device.colorTemp = parseInt(colorInput.value);
         itemName.removeChild(itemName.lastChild);
         renderIcon();
+        saveSysData();
       });
     }
     //Put selector
@@ -166,6 +172,7 @@ function renderItems(type) {
         );
         itemParams.removeChild(itemParams.lastChild);
         renderGroupContent(device, itemParams);
+        saveSysData();
       });
       itemParams.appendChild(selectLights);
       renderGroupContent(device, itemParams);
@@ -179,6 +186,7 @@ function renderItems(type) {
       deviceName === device.name;
       itemName.textContent = `${device.name} (${device.power})`;
       renderIcon();
+      saveSysData();
     });
     // Add event listener for power switch
     powerSwitchInput.addEventListener("change", () => {
@@ -188,11 +196,13 @@ function renderItems(type) {
       itemName.textContent = `${device.name} (${device.power})`;
       itemName.classList.toggle("on");
       renderIcon();
+      saveSysData();
     });
 
     itemCard.addEventListener("click", () => {
       itemCard.classList.toggle("current");
       itemForRm = `${deviceName}`;
+      saveSysData();
     });
   }
 }
@@ -200,23 +210,27 @@ function renderItems(type) {
 function addNewLight() {
   Light.addNewLight(prompt("Enter new name:"));
   regenLists();
+  saveSysData();
 }
 
 function remLight() {
   Light.removeLight(itemForRm);
   regenLists();
+  saveSysData();
 }
 
 function createGroup() {
   Group.addNewGroup(Home, prompt("Enter new group name:"));
   groupList.innerHTML = "";
   renderItems("group");
+  saveSysData();
 }
 
 function delGroup() {
   Group.removeGroup(Home, itemForRm);
   groupList.innerHTML = "";
   renderItems("group");
+  saveSysData();
 }
 
 function regenLists() {

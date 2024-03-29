@@ -3,8 +3,11 @@ const infTime = document.querySelector(".info__time-clock");
 const infDate = document.querySelector(".info__time-date");
 const infGreetings = document.querySelector(".main__greetings");
 
-function getTimeAndDate() {
-    const CurrentDate = new Date();
+function getTimeAndDate(option) {
+  let CurrentDate;
+  if (!option) {
+    CurrentDate = new Date();
+  } else { CurrentDate = new Date(option); }
     return {
       date: CurrentDate,
       hr: CurrentDate.getHours(),
@@ -42,7 +45,7 @@ function getTimeAndDate() {
       timeOfDay = "evening";
       body.className = "evening-back";
     }
-    infGreetings.innerHTML = `Welcome to YourSmartHome! Good ${timeOfDay}!`;
+    infGreetings.innerHTML = `Welcome to YourSmartLights! Good ${timeOfDay}!`;
   }
 
   export { getTimeAndDate, displayTimeAndDate, displayGreetings };

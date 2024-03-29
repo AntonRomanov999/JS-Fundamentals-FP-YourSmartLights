@@ -10,6 +10,7 @@
  scroll-behavior: smooth;  
  font-family: 'Open Sans', sans-serif;
 --txt-active: #FFFFFF;
+--txt-error:rgb(251, 129, 129)F;
 --txt-nonactive: #d7d7d7;
 --txt-dark: #5a5a5a;
 --btn-add: #5AB500;

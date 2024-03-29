@@ -9,6 +9,16 @@
   gap: 10px;
 }
 
+@media (min-width: 768px) {
+
+  .frame-main {
+    margin: 20px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
 .frame {
   padding: 10px;
   border-radius: 25px;
@@ -114,6 +124,36 @@
 .time-inputs {
   padding: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   font-size: 18px;
+}
+
+.time-inputs label {
+  padding: 10px;
+}
+
+.time-inputs input {
+  padding: 10px;
+}
+
+.list-groups {
+  display: grid;
+  gap: 5px;
+}
+
+.list-groups li {
+  display: flex;
+  padding: 10px 30px 10px 30px;
+  align-items: center;
+  font-size: 22px;
+}
+
+.list-groups div {
+  cursor: pointer;
+}
+
+.message {
+  font-weight: bold;
+  padding: 0 40px 0 40px;
 }

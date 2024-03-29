@@ -1,12 +1,12 @@
 const Home = {
   allLights: {
-    name: 'All lights in the house'
+    name: "All lights in the house",
   },
   allAirConds: {
-    name: 'All air conditioners in the house'
+    name: "All air conditioners in the house",
   },
   allHeaters: {
-    name: 'All heaters in the'
+    name: "All heaters in the house",
   },
 };
 
@@ -14,7 +14,7 @@ class Device {
   #power;
   constructor(name) {
     this.name = name;
-    this.#power = "on";
+    this.#power = "off";
   }
   get power() {
     return this.#power;
@@ -31,7 +31,9 @@ class Device {
     } else this.#power = "on";
   }
   rename(newName) {
-    if (!newName) { this.name = this.name } else this.name = newName;
+    if (!newName) {
+      this.name = this.name;
+    } else this.name = newName;
   }
   static addToGroup(groupName, device) {
     if (!Home[groupName]) {
@@ -51,6 +53,22 @@ class Device {
     Object.values(Home[groupName]).forEach((i) => {
       if (i instanceof Device) {
         i.powerSwitch();
+      }
+    });
+  }
+  static onPowerGroup(groupName) {
+    Home[groupName].powerOn();
+    Object.values(Home[groupName]).forEach((i) => {
+      if (i instanceof Device) {
+        i.powerOn();
+      }
+    });
+  }
+  static offPowerGroup(groupName) {
+    Home[groupName].powerOff();
+    Object.values(Home[groupName]).forEach((i) => {
+      if (i instanceof Device) {
+        i.powerOff();
       }
     });
   }
@@ -77,10 +95,14 @@ class Light extends Device {
     this.#colorTemp = 10;
   }
   static addNewLight(newName) {
-    if (newName) { Home.allLights[newName] = new Light(newName); }
+    if (newName) {
+      Home.allLights[newName] = new Light(newName);
+    }
   }
   static removeLight(name) {
-    if (name) { delete Home.allLights[name]; } 
+    if (name) {
+      delete Home.allLights[name];
+    }
   }
   get brightness() {
     return this.#brightness;
@@ -100,4 +122,61 @@ class Light extends Device {
   }
 }
 
-export { Home, Device, Group, Light };
+function saveSysData() {
+  const dataLights = Object.values(Home.allLights).filter(
+    (i) => i instanceof Light
+  ).map(light => {
+    return {
+      type: 'Light',
+      name: light.name,
+      brightness: light.brightness,
+      colorTemp: light.colorTemp,
+      power: light.power
+    };
+  });
+
+  const dataGroups = Object.values(Home).filter(
+    (i) => i instanceof Group
+  ).map(group => {
+    return {
+      type: 'Group',
+      name: group.name,
+    };
+  });
+
+  const allLights = [...dataLights, ...dataGroups];
+  const allLightsString = JSON.stringify(allLights);
+
+  localStorage.removeItem("allLights");
+  localStorage.setItem("allLights", allLightsString);
+  console.log(allLightsString);
+}
+
+function readSysData() {
+  let allLightsSaved = JSON.parse(localStorage.getItem("allLights"));
+  allLightsSaved.forEach(data => {
+    if (data.type === 'Light') {
+      let lightName = data.name;
+      let lightBrightness = parseInt(data.brightness);
+      let lightColorTemp = parseInt(data.colorTemp);
+      let lightPower = data.power;
+      if (!Home.allLights[lightName]) {
+        Light.addNewLight(lightName);
+      }
+      Home.allLights[lightName].brightness = lightBrightness;
+      Home.allLights[lightName].colorTemp = lightColorTemp;
+      if (lightPower === 'on') {
+        Home.allLights[lightName].powerOn();
+      } else {
+        Home.allLights[lightName].powerOff();
+      }
+    } else if (data.type === 'Group') {
+      let groupName = data.name;
+      if (!Home[groupName]) {
+        Group.addNewGroup(Home, groupName);
+      }
+    }
+  });
+}
+
+export { Home, Device, Group, Light, readSysData, saveSysData};
