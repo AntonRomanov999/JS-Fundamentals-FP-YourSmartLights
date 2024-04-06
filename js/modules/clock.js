@@ -39,9 +39,9 @@ function getTimeAndDate(option) {
     } else if (time.hr >= 5 && time.hr <= 11) {
       timeOfDay = "morning";
       body.className = "morning-back";
-    } else if (time.hr >= 11 && time.hr <= 16) {
+    } else if (time.hr >= 11 && time.hr < 16) {
       timeOfDay = "day";
-    } else {
+    } else if (time.hr >= 16 && time.hr < 23) {
       timeOfDay = "evening";
       body.className = "evening-back";
     }
